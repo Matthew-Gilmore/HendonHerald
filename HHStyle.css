@@ -205,3 +205,7 @@ aside table .pointsColumn {
         width: 300px;
     }
 }
+
+.error {
+    outline: solid 3px #700b0b;
+}

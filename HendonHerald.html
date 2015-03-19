@@ -4,7 +4,7 @@
 
     <head>
         <title>The Hendon Herald- Sunderland's Premier News Sauce</title>
-        <link rel="shortcut icon" href="../Introduction%20to%20HTML/Main%20Project%20Resources/Images/favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="Main%20Project%20Resources/favicon.ico" type="image/x-icon"/>
         <link type="text/css" rel="stylesheet" href="HHStyle.css">
     </head>
 
@@ -12,13 +12,12 @@
         <div id="contentContainer">
             <header>
                 <a href="HendonHerald.html" id="logo">
-                    <img src="../Introduction%20to%20HTML/Main%20Project%20Resources/Images/heraldlogo.png" alt="Herald Logo"/>
+                    <img src="Main%20Project%20Resources/heraldlogo.png" alt="Herald Logo"/>
                 </a>
 
                 <h1>The Hendon Herald</h1>
 
                 <nav>
-                    <!--<h2>The Hendon Herald</h2>-->
                     <ul>
                         <li><a href="HendonHerald.html">News</a></li>
                         <li><a href="HendonHerald.html">Local</a></li>
@@ -31,7 +30,7 @@
             <main>
                 <article>
                     <h2>Spectral Figure Found In Mowbray Park</h2>
-                    <img src="../Introduction%20to%20HTML/Main%20Project%20Resources/Images/Spectral%20Figure%20Discovered%20in%20Mowbray%20park.jpg"
+                    <img src="Main%20Project%20Resources/Spectral%20Figure%20Discovered%20in%20Mowbray%20park.jpg"
                          alt="Spectral Figure"/><div>
                         <h3>Spirit Eyes Cannon</h3>
                         <p>The Ghost of General Havelock appears to be considering using the cannon left in Mowbray
@@ -46,7 +45,7 @@
                 </article>
 
                 <article>
-                    <img src="../Introduction%20to%20HTML/Main%20Project%20Resources/Images/CrookedBlandfordStreet.jpg" alt="Crooked Blandford"/><div>
+                    <img src="Main%20Project%20Resources/CrookedBlandfordStreet.jpg" alt="Crooked Blandford"/><div>
                         <h3>Blandford Street Found "Wonky"</h3>
                         <p>Keen shoppers were undeterred as Blandford Street at the heart of the city was seen to be a
                             bit skewiff. From Herbet Brown's to Debenhams, the whole street appeared tilted off to the
@@ -61,7 +60,7 @@
                 </article>
 
                 <article>
-                    <img src="../Introduction%20to%20HTML/Main%20Project%20Resources/Images/AmysWinehouse.jpg" alt="Amy's Winehouse"/><div>
+                    <img src="Main%20Project%20Resources/AmysWinehouse.jpg" alt="Amy's Winehouse"/><div>
                         <h3>Amy's Winehouse Urged into Rehab</h3>
                         <p>Amy's Winehouse has said "no no no" to calls to enter rehab after complaints of rowdy
                             behaviour about the songstressly-named offy.</p>
@@ -69,7 +68,7 @@
                             in broad daylight:</p>
                         <ul>
                             <li>Fine Wines &amp; Champagnes</li>
-                            <li>Rough Ciders & Spirits</li>
+                            <li>Rough Ciders &amp; Spirits</li>
                             <li>Terry's Chocolate Orange, which no one ever seems to buy</li>
                         </ul>
                         <p>Amy's Winehouse ain't got the time to make a comment, adding the retail outlet's daddy thinks
@@ -124,10 +123,19 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <h3>Contact Us</h3>
+                <form action="http://localhost:3000/submit" onsubmit="return validate()">
+                    <label for="email">Your e-mail:</label><br>
+                    <input type="text" name="email" id="email"><br>
+                    <label for="message">Your Message</label><br>
+                    <input type="text" name="message" id="message"><br>
+                    <input type="submit" value="Submit">
+                </form>
             </aside>
 
             <footer>
-                <img src="../Introduction%20to%20HTML/Main%20Project%20Resources/Images/Our%20Editor.jpg" alt="Our Editor"/><div>
+                <img src="Main%20Project%20Resources/Our%20Editor.jpg" alt="Our Editor"/><div>
                     <h3>About Our Editor</h3>
                     <p>Our chief editor, Ahab McRadgie has had a long career in the media, despite his youth. Starting
                         off taxing dafties for 20p, who he assured he needed the money to get home to his dying
@@ -137,9 +145,32 @@
                         vodka and small arms we don't talk about, but <i>no one</i> will ever forget. Even though we
                         tried hard. <i>So, so hard</i>.</p>
                 </div>
-                <p id="copyright">&copy; Copyright 2014, Hendon Herald. Please don't nick our stuff, we've already had two sets of
-                    alloys taken this week.</p>
+                <p id="copyright">&copy; Copyright 2014, Hendon Herald. Please don't nick our stuff, we've already had
+                    two sets of alloys taken this week.</p>
             </footer>
         </div>
     </body>
+
+    <script>
+        function validate() {
+            if (document.getElementById("email").value == "" || document.getElementById("message").value == "")
+            {
+                if (document.getElementById("email").value == "")
+                {
+                    alert("You need to enter an email address!");
+                    document.getElementById("email").classList.add("error");
+                    window.setTimeout(function(){document.getElementById("email").classList.remove("error");}, 2000);
+                }
+                if (document.getElementById("message").value == "")
+                {
+                    alert("You need to enter a message!");
+                    document.getElementById("message").classList.add("error");
+                    window.setTimeout(function(){document.getElementById("message").classList.remove("error");}, 2000);
+                }
+                return false;
+            }
+            else
+                return true;
+        }
+    </script>
 </html>

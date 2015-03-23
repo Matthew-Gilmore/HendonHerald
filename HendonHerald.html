@@ -5,7 +5,10 @@
     <head>
         <title>The Hendon Herald- Sunderland's Premier News Sauce</title>
         <link rel="shortcut icon" href="Main%20Project%20Resources/favicon.ico" type="image/x-icon"/>
+        <script src="Main%20Project%20Slider%20Resources/Scripts/jquery-1.11.1.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="Main%20Project%20Slider%20Resources/Css/flexslider.css">
         <link type="text/css" rel="stylesheet" href="HHStyle.css">
+        <script src="Main%20Project%20Slider%20Resources/Scripts/jquery.flexslider-min.js"></script>
     </head>
 
     <body>
@@ -125,13 +128,35 @@
                 </table>
 
                 <h3>Contact Us</h3>
-                <form action="http://localhost:3000/submit" onsubmit="return validate()">
+                <form>
                     <label for="email">Your e-mail:</label><br>
                     <input type="text" name="email" id="email"><br>
                     <label for="message">Your Message</label><br>
                     <input type="text" name="message" id="message"><br>
-                    <input type="submit" value="Submit">
+                    <button onclick="submitForm()">Submit</button>
                 </form>
+
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <img src="Main%20Project%20Resources/Rotator/Confusing%20Building.jpg"
+                                 alt="Confusing Building" title="What is it? I don't know.">
+                            <figcaption>Sunderland Building Too Confusing</figcaption>
+                        </li>
+
+                        <li>
+                            <img src="Main%20Project%20Resources/Rotator/A%20Level.jpg" alt="A Level Results"
+                                 title="Yet more leaping 18 Year Olds">
+                            <figcaption>A-Levels Mean Hackneyed Girl Pics</figcaption>
+                        </li>
+
+                        <li>
+                            <img src="Main%20Project%20Resources/Rotator/Wong%20Hendon%20Found.JPG" alt="Wrong Hendon"
+                                 title="Turns out it's full of busies">
+                            <figcaption>Incorrect Hendon Found</figcaption>
+                        </li>
+                    </ul>
+                </div>
             </aside>
 
             <footer>
@@ -149,28 +174,68 @@
                     two sets of alloys taken this week.</p>
             </footer>
         </div>
-    </body>
 
-    <script>
-        function validate() {
-            if (document.getElementById("email").value == "" || document.getElementById("message").value == "")
-            {
-                if (document.getElementById("email").value == "")
+        <script>
+            function validate() {
+                if (document.getElementById("email").value == "" || document.getElementById("message").value == "")
                 {
-                    alert("You need to enter an email address!");
-                    document.getElementById("email").classList.add("error");
-                    window.setTimeout(function(){document.getElementById("email").classList.remove("error");}, 2000);
+                    if (document.getElementById("email").value == "")
+                    {
+                        alert("You need to enter an email address!");
+                        document.getElementById("email").classList.add("error");
+                        window.setTimeout(function(){document.getElementById("email").classList.remove("error");}, 2000);
+                    }
+                    if (document.getElementById("message").value == "")
+                    {
+                        alert("You need to enter a message!");
+                        document.getElementById("message").classList.add("error");
+                        window.setTimeout(function(){document.getElementById("message").classList.remove("error");}, 2000);
+                    }
                 }
-                if (document.getElementById("message").value == "")
-                {
-                    alert("You need to enter a message!");
-                    document.getElementById("message").classList.add("error");
-                    window.setTimeout(function(){document.getElementById("message").classList.remove("error");}, 2000);
-                }
-                return false;
             }
-            else
-                return true;
-        }
-    </script>
+
+            function submitForm() {
+                var url = "http://localhost:63342/HendonHerald/HendonHerald.html?email=email&message=message";
+                var xmlhttp;
+
+                if (window.XMLHttpRequest)
+                {
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else
+                {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4)
+                    {
+                        if (xmlhttp.status == 200)
+                        {
+                            var m = document.getElementsByTagName("input")[1].value;
+                            alert("Your message has been sent:\n" + m);
+                        }
+                        else if (xmlhttp.status == 422)
+                        {
+                            validate();
+                        }
+                        else
+                        {
+                            alert("There was an unexpected problem posting your message");
+                        }
+                    }
+                }
+                xmlhttp.open("POST", url, true);
+                xmlhttp.send();
+            }
+
+            $(window).load(function() {
+                $(".flexslider").flexslider({
+                    animation: "slide",
+                    easing: "swing",
+                    controlNav: "false"
+                });
+            });
+        </script>
+    </body>
 </html>

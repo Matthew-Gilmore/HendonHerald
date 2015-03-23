@@ -4,7 +4,6 @@
 
 h3 {
     color: #ffffff;
-    /*font-weight: normal;*/
 }
 
 h1 {
@@ -208,4 +207,18 @@ aside table .pointsColumn {
 
 .error {
     outline: solid 3px #700b0b;
+}
+
+figcaption {
+    font-weight: bold;
+    color: maroon;
+    text-align: center;
+}
+
+.flexslider {
+    width: 192px;
+}
+
+.flex-control-paging li a.flex-active {
+    background: maroon;
 }

@@ -211,7 +211,7 @@ aside table .pointsColumn {
 
 figcaption {
     font-weight: bold;
-    color: maroon;
+    color: #800000;
     text-align: center;
 }
 
@@ -220,5 +220,5 @@ figcaption {
 }
 
 .flex-control-paging li a.flex-active {
-    background: maroon;
+    background: #800000;
 }
